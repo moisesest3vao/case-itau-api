@@ -2,9 +2,8 @@ package com.example.demo.repository;
 
 import org.springframework.stereotype.Repository;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +17,8 @@ public class CadastroRepository {
 
         if(massaDeDados.exists()){
             try {
-                FileReader fileReader = new FileReader(massaDeDados);
-                BufferedReader bufferedReader = new BufferedReader(fileReader);
+                InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(massaDeDados.getPath()), StandardCharsets.ISO_8859_1);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
                 while(true){
                     String nome = bufferedReader.readLine();

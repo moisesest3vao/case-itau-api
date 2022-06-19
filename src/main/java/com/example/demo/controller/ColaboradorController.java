@@ -20,7 +20,7 @@ public class ColaboradorController {
     @Autowired
     CadastroService cadastroService;
 
-    //Responsável por receber a requisição do front-end e tratá-la de acordo com o end-point
+    //Responsável por receber a requisição do front-end e tratá-la
     @GetMapping
     public ResponseEntity<?> cadastrar(){
         List<Colaborador> colaboradores = cadastroService.cadastrarColaboradores();

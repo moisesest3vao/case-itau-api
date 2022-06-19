@@ -19,18 +19,17 @@ public class CadastroService {
         List<String> nomesDosColaboradores = this.cadastroRepository.getAll();
         List<Colaborador> colaboradores = nomesDosColaboradores.stream().map(this::criarLogin).toList();
 
-
         //resetando o histórico para cada chamada
         ColaboradorUtil.historicoLogins = new ArrayList<>();
         return colaboradores;
     }
 
-    public Colaborador criarLogin(String nome){
-        String nomeSemElementos = ColaboradorUtil.removeElementosDeLigacao(nome);
+    public Colaborador criarLogin(String nomeCompleto){
+        String nomeSemElementos = ColaboradorUtil.removeElementosDeLigacao(nomeCompleto);
         String[] nomes = nomeSemElementos.split(" ");
         String login = this.criaIdentificador(nomes);
 
-        return new Colaborador(nome, login);
+        return new Colaborador(nomeCompleto, login);
     }
 
     public String criaIdentificador(String[] nomes){
