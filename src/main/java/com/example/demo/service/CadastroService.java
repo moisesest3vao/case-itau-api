@@ -15,7 +15,7 @@ public class CadastroService {
     @Autowired
     CadastroRepository cadastroRepository;
 
-    public List<Colaborador> cadastrarColaboradores(){
+    public List<Colaborador> cadastrarColaboradores() {
         List<String> nomesDosColaboradores = this.cadastroRepository.getAll();
         List<Colaborador> colaboradores = nomesDosColaboradores.stream().map(this::criarLogin).toList();
 
@@ -24,7 +24,7 @@ public class CadastroService {
         return colaboradores;
     }
 
-    public Colaborador criarLogin(String nomeCompleto){
+    public Colaborador criarLogin(String nomeCompleto) {
         String nomeSemElementos = ColaboradorUtil.removeElementosDeLigacao(nomeCompleto);
         String[] nomes = nomeSemElementos.split(" ");
         String login = this.criaIdentificador(nomes);
@@ -32,14 +32,14 @@ public class CadastroService {
         return new Colaborador(nomeCompleto, login);
     }
 
-    public String criaIdentificador(String[] nomes){
+    public String criaIdentificador(String[] nomes) {
         String login = this.montaLogin(nomes);
 
         ColaboradorUtil.historicoLogins.add(login);
         return login;
     }
 
-    private String montaLogin(String[] nomes){
+    private String montaLogin(String[] nomes) {
         String parte1 = null;
         String parte2 = null;
 
@@ -47,8 +47,8 @@ public class CadastroService {
         int quantidadeDeNomes = nomes.length;
         int contador = 0;
 
-        while(invalidaLogin){
-            if(contador > 3000){
+        while (invalidaLogin) {
+            if (contador > 3000) {
                 throw new RuntimeException("Não é possível gerar um usuário dinamicamente com este nome");
             }
 
@@ -56,10 +56,10 @@ public class CadastroService {
             int aux = random.nextInt(((quantidadeDeNomes - 1)) + 1);
             int aux2 = random.nextInt(((quantidadeDeNomes - 1)) + 1);
 
-            if(nomes[aux].length() >=4){
-                parte1 = nomes[aux].substring(0,4);
-                if(nomes[aux2].length() >= 3){
-                    parte2 = nomes[aux2].substring(0,3);
+            if (nomes[aux].length() >= 4) {
+                parte1 = nomes[aux].substring(0, 4);
+                if (nomes[aux2].length() >= 3) {
+                    parte2 = nomes[aux2].substring(0, 3);
                 }
             }
 
@@ -67,12 +67,8 @@ public class CadastroService {
             contador++;
         }
 
-        return parte1+parte2;
+        return parte1 + parte2;
     }
-
-
-
-
 
 
 }

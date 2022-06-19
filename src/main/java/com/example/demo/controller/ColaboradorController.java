@@ -22,7 +22,7 @@ public class ColaboradorController {
 
     //Responsável por receber a requisição do front-end e tratá-la
     @GetMapping
-    public ResponseEntity<?> cadastrar(){
+    public ResponseEntity<?> cadastrar() {
         List<Colaborador> colaboradores = cadastroService.cadastrarColaboradores();
         return ResponseEntity.ok(colaboradores.stream().map(ColaboradorDto::new).collect(Collectors.toList()));
     }

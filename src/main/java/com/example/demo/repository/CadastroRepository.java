@@ -15,19 +15,19 @@ public class CadastroRepository {
         String path = "src/main/java/com/example/demo/repository/Massa de Dados.txt";
         File massaDeDados = new File(path);
 
-        if(massaDeDados.exists()){
+        if (massaDeDados.exists()) {
             try {
                 InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(massaDeDados.getPath()), StandardCharsets.ISO_8859_1);
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
-                while(true){
+                while (true) {
                     String nome = bufferedReader.readLine();
-                    if(nome == null){
+                    if (nome == null) {
                         return nomes;
                     }
                     nomes.add(nome);
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Houve um problema durante a leitura do arquivo");
                 e.printStackTrace();
             }

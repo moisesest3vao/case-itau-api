@@ -12,11 +12,11 @@ public class ColaboradorUtil {
     public static String expressaoRegular = "(\\w)(\\s+)(DO|DA|DE|DOS|DAS)(\\s+)(\\w)";
 
     public static boolean invalidaLogin(String parte1, String parte2) {
-        if(parte1 != null && parte2 != null ){
-            String loginAtual = parte1+parte2;
+        if (parte1 != null && parte2 != null) {
+            String loginAtual = parte1 + parte2;
             String stringComparacao = parte1.substring(0, 3);
 
-            return historicoLogins.stream().anyMatch( login -> {
+            return historicoLogins.stream().anyMatch(login -> {
                 return Objects.equals(login, loginAtual);
             }) || stringComparacao.equals(parte2);
         }
