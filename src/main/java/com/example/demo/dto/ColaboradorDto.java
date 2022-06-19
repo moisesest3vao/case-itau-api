@@ -5,10 +5,12 @@ import lombok.Getter;
 
 @Getter
 public class ColaboradorDto {
-    private String nome;
-    private String login;
+    private final String nome;
+    private final String login;
     public ColaboradorDto(Colaborador colaborador){
         this.nome = colaborador.getNome();
         this.login = colaborador.getLogin();
+
+        System.out.println(colaborador.toString());
     }
 }

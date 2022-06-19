@@ -41,11 +41,11 @@ public class CadastroService {
         String parte1 = null;
         String parte2 = null;
 
-        boolean invalidaLogin = true;
+        boolean validaLogin = false;
         int quantidadeDeNomes = nomeESobrenomes.length;
         int contador = 0;
 
-        while (invalidaLogin) {
+        while (!validaLogin) {
             if (contador > 9999) {
                 throw new RuntimeException("Não é possível gerar um usuário dinamicamente com este nome");
             }
@@ -57,7 +57,7 @@ public class CadastroService {
             parte1 = nomeESobrenomes[indexNome1].length() >= 4 ? nomeESobrenomes[indexNome1].substring(0, 4) : null;
             parte2 = nomeESobrenomes[indexNome2].length() >= 3 ? nomeESobrenomes[indexNome2].substring(0, 3) : null;
 
-            invalidaLogin = ColaboradorUtil.invalidaLogin(parte1, parte2);
+            validaLogin = ColaboradorUtil.validaLogin(parte1, parte2);
 
             contador++;
         }
